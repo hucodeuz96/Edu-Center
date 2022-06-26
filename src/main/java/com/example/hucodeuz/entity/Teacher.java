@@ -35,6 +35,4 @@ public class Teacher extends AbsEntity {
     @Enumerated
     private PositionType positionType = PositionType.MENTOR;
 
-
-
 }
