@@ -15,11 +15,10 @@ import javax.validation.constraints.NotNull;
 @Setter
 
 public class GroupDto {
-
     @NotNull(message = "Nomini kirirtish shart")
     private String name;
     @NotNull(message = "Kursni kiritish kerak")
-    private Long courceId;
+    private Long courseId;
     @NotNull(message = "Filialni kiritish kerak")
     private Long filialId;
 }

@@ -5,8 +5,15 @@ import com.example.hucodeuz.dto.GroupDto;
 import com.example.hucodeuz.entity.Group;
 import com.example.hucodeuz.service.GroupService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author "Husniddin Ulachov"
@@ -20,7 +27,7 @@ public class GroupControl {
     private  final GroupService groupService;
 
     @PostMapping
-    public ResponseEntity<?> createGroup(@RequestBody GroupDto groupDto){
+    public ResponseEntity<?> createGroup(@Valid @RequestBody GroupDto groupDto){
         ApiResponse<Group> apiResponse = groupService.save(groupDto);
         return ResponseEntity.status(apiResponse.isSuccess()? 201 : 409).body(apiResponse);
     }
@@ -39,6 +46,19 @@ public class GroupControl {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@RequestParam Long id){
         return null;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 
 }

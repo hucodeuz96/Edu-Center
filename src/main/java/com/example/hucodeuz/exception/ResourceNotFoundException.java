@@ -3,12 +3,12 @@ package com.example.hucodeuz.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.OK)
+@ResponseStatus
 public class ResourceNotFoundException extends RuntimeException {
     //programmani to'xtatmaydi
     private String resourceName;
     private String fieldName;
-    private Object fieldValue;
+    private Object fieldValue ;
 
     public ResourceNotFoundException(String resourceName, String fieldName, Object fieldValue) {
         super(String.format("%s not found with %s : '%s'", resourceName, fieldName, fieldValue));

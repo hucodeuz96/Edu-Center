@@ -22,7 +22,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Filial extends AbsNameEntity {
-    private Boolean status;
+    private Boolean status = true;
 
     @JsonIgnore
     @OneToMany(mappedBy ="filial",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
