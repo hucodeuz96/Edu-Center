@@ -8,6 +8,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author "Husniddin Ulachov"
@@ -17,6 +18,6 @@ import java.util.List;
 @RepositoryRestResource(path = "filial")
 public interface FilialRepository extends JpaRepository<Filial,Long> {
     @RestResource(path = "name")
-    List<Filial> findByNameStartingWith(@Param("name") String name);
+    Optional<Filial>  findByNameContainingIgnoreCase(@Param("name") String name);
 
 }

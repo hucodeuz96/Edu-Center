@@ -25,4 +25,5 @@ public class Group extends AbsNameEntity {
 
     @ManyToOne
     private Filial filial;
+
 }

@@ -13,12 +13,12 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Getter
 @Setter
-
-public class GroupDto {
-    @NotNull(message = "Nomini kirirtish shart")
-    private String name;
-    @NotNull(message = "Kursni kiritish kerak")
-    private Long courseId;
-    @NotNull(message = "Filialni kiritish kerak")
-    private Long filialId;
+@Builder
+public class ResPaymentDto {
+    private String student;
+    private String filial;
+    private Double amount;
+    private String payType;
+    private String createdAt;
+    private String updatedAt;
 }

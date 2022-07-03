@@ -3,7 +3,10 @@ package com.example.hucodeuz.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus
+import java.util.UUID;
+import java.util.function.Supplier;
+
+//@ResponseStatus
 public class ResourceNotFoundException extends RuntimeException {
     //programmani to'xtatmaydi
     private String resourceName;
@@ -16,6 +19,8 @@ public class ResourceNotFoundException extends RuntimeException {
         this.fieldName = fieldName;
         this.fieldValue = fieldValue;
     }
+
+
 
     public String getResourceName() {
         return resourceName;

@@ -23,21 +23,22 @@ import java.util.UUID;
 public class AbsEntity {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
-//
-//    @LastModifiedBy
-//    private UUID updatedBy;
 
-//    @CreationTimestamp
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(updatable = false)
-//    private Date createdAt;
 
-//    @CreationTimestamp
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(nullable = false)
-//    private Date updatedAt;
+    @LastModifiedBy
+    private UUID updatedBy;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false)
+    private Date createdAt;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date updatedAt;
 
 
 }

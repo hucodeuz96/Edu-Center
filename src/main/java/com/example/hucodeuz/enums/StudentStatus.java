@@ -6,5 +6,8 @@ package com.example.hucodeuz.enums;
  * @project Edu-Center
  */
 public enum StudentStatus {
-
+    REGISTERED, //tizimga endi qo'shildi 0 ordinal string registered
+    ACTIVE, //o'qiyapti
+    STOPPED, //to'xtatilgan
+    FINISHED //tugatdi
 }
