@@ -30,6 +30,6 @@ public class Filial extends AbsNameEntity {
 
     @JsonIgnore
     @OneToMany(mappedBy = "filial",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<Staff> staffList;
+    private List<User> staffList;
 
 }

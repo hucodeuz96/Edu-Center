@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 
 import java.util.List;
@@ -20,4 +21,7 @@ public interface FilialRepository extends JpaRepository<Filial,Long> {
     @RestResource(path = "name")
     Optional<Filial>  findByNameContainingIgnoreCase(@Param("name") String name);
 
+    @PreAuthorize(value = "hasAuthority('USER')")
+    @Override
+    <S extends Filial> S save(S entity);
 }

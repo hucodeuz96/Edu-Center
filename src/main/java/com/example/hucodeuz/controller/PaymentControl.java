@@ -7,6 +7,7 @@ import com.example.hucodeuz.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -25,14 +26,14 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PaymentControl {
     private final PaymentService paymentService;
-
+    @PreAuthorize(value = "hasAuthority('CREATE')")
     @PostMapping
     public ResponseEntity<?> createPayment(@Valid @RequestBody PaymentDto paymentDto) {
         ApiResponse<?> apiResponse = paymentService.save(paymentDto);
         return ResponseEntity.status(apiResponse.isSuccess() ? 201 : 409).body(apiResponse);
     }
 
-
+    @PreAuthorize("hasAuthority('READ')")
     @GetMapping
     public ResponseEntity<?> getAll(
             @RequestParam (defaultValue = "0")  int page,
@@ -45,17 +46,21 @@ public class PaymentControl {
         ApiResponse<?> apiResponse = paymentService.getAll(page,size,filial,student,startDate,endDate);
         return ResponseEntity.ok(apiResponse);
     }
-
+    @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/{id}")
     public ResponseEntity<?> getOne(@PathVariable String id) {
         ApiResponse<?> one = paymentService.getOne(id);
         return new ResponseEntity<>(one, HttpStatus.OK);
     }
+    @PreAuthorize("hasAuthority('DELETE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable String id) {
         ApiResponse<String> delete = paymentService.delete(id);
         return ResponseEntity.ok(delete);
     }
+
+
+
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

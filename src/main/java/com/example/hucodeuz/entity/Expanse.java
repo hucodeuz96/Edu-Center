@@ -5,7 +5,7 @@ package com.example.hucodeuz.entity;
  * @created 12:10 PM on 6/26/2022
  * @project Edu-Center
  */
-import com.example.hucodeuz.entity.templete.AbsEntity;
+
 import com.example.hucodeuz.entity.templete.AbsNameEntity;
 import com.example.hucodeuz.enums.ExpansePayType;
 import com.example.hucodeuz.enums.PayType;
